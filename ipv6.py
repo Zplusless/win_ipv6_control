@@ -67,20 +67,27 @@ def count_time(t):
 
 if is_admin():
     s = 999
-    while s !='0':
+    while s !='9':
         s = input(
 '''
 =====================================
 请选择要进行的操作：
-0---->退出
+0---->查看ipv6状态
 1---->永久关闭ipv6
 2---->定时关闭ipv6
 3---->开启ipv6
+9---->退出
 =====================================\n
 '''
         )
 
-        # print(type(s))
+        if s=='0':
+            print('查看ipv6状态')
+            with PowerShell('GBK') as ps:
+                outs, errs = ps.run('Get-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6')
+                # print('error:', os.linesep, errs)
+                print('output:', os.linesep, outs)
+            # print('ipv6已关闭\n\n') 
 
         if s=='1':
             print('关闭ipv6')

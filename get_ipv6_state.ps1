@@ -1,0 +1,1 @@
+ Get-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6
