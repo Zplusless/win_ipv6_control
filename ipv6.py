@@ -84,7 +84,7 @@ if is_admin():
         if s=='0':
             print('查看ipv6状态')
             with PowerShell('GBK') as ps:
-                outs, errs = ps.run('Get-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6')
+                outs, errs = ps.run('Get-NetAdapterBinding -Name * -ComponentID ms_tcpip6')
                 # print('error:', os.linesep, errs)
                 print('output:', os.linesep, outs)
             # print('ipv6已关闭\n\n') 
@@ -92,14 +92,14 @@ if is_admin():
         if s=='1':
             print('关闭ipv6')
             with PowerShell('GBK') as ps:
-                outs, errs = ps.run('Disable-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6 -PassThru')
+                outs, errs = ps.run('Disable-NetAdapterBinding -Name * -ComponentID ms_tcpip6 -PassThru')
                 print('error:', os.linesep, errs)
                 print('output:', os.linesep, outs)
             print('ipv6已关闭\n\n') 
         if s=='2':
             t = int(input('临时关闭多少秒？'))
             with PowerShell('GBK') as ps:
-                outs, errs = ps.run('Disable-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6 -PassThru')
+                outs, errs = ps.run('Disable-NetAdapterBinding -Name * -ComponentID ms_tcpip6 -PassThru')
                 print('error:', os.linesep, errs)
                 print('output:', os.linesep, outs)
                 print('ipv6已关闭\n\n') 
@@ -107,7 +107,7 @@ if is_admin():
             count_time(t)                
 
             with PowerShell('GBK') as ps:
-                outs, errs = ps.run('Enable-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6 -PassThru')
+                outs, errs = ps.run('Enable-NetAdapterBinding -Name * -ComponentID ms_tcpip6 -PassThru')
                 print('error:', os.linesep, errs)
                 print('output:', os.linesep, outs)
             print('ipv6已开启\n\n') 
@@ -115,7 +115,7 @@ if is_admin():
             s = '0'
         if s=='3':
             with PowerShell('GBK') as ps:
-                outs, errs = ps.run('Enable-NetAdapterBinding -Name 以太网 -ComponentID ms_tcpip6 -PassThru')
+                outs, errs = ps.run('Enable-NetAdapterBinding -Name * -ComponentID ms_tcpip6 -PassThru')
                 print('error:', os.linesep, errs)
                 print('output:', os.linesep, outs)
             print('ipv6已开启\n\n') 
